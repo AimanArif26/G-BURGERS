@@ -2,18 +2,14 @@
 #include<windows.h>
 using namespace std;
 
-// all functions
-
-void ownerStock();     // owner enter item stocks
-void menuNstock();     // display menu and item stocks availability
-void brgrOptn();       // customer input their choice of burger type
-void meatSelector();   // customer input their meat of choice 
-void custBill();       // display burger name based on customer choice and total price after tax
-string burgerNaming(); // determines the burger name based on customer's burger choice
-void priceCalc();      // calculates price of burger, calculates tax based on burger price and summation of total sales
-void grossNstock();    // display total sales made and remainding stocks left
-
-// all data types used and its variable
+void ownerStock();
+void menuNstock();
+void brgrOptn();
+void meatSelector();
+void custBill();
+string burgerNaming();
+void priceCalc();
+void grossNstock();
 
 const int maxItem=4;
 int count=0 , stocks[maxItem] , burgerType;
@@ -21,8 +17,6 @@ double price , taxAmount , totalPrice , totalSales;
 const double tax = 0.06;
 char meatOptn;
 string burgerName , stockName[maxItem] = {"Buns = " , "Chicken Meat = " , "Beef Meat = " , "Egg = "};
-
-
 
 int main()
 {
@@ -32,9 +26,9 @@ int main()
 	
 	while(repeatOrder=='Y' || repeatOrder=='y')
 	{
-		if(stocks[0]>0) // checks if buns is still in stock
+		if(stocks[0]>0)
 		{	
-			if(stocks[1]>0 || stocks[2]>0) // checks if meats is still in stock
+			if(stocks[1]>0 || stocks[2]>0)
 			{
 				menuNstock();
 				brgrOptn();
@@ -42,7 +36,7 @@ int main()
 				priceCalc();
 				custBill();
 			
-				cout<<endl<<"Make a new order? (Y to proceed): "; // prompt customer to make new order
+				cout<<endl<<"Make a new order? (Y to proceed): ";
 				cin>>repeatOrder; 
 			}
 			else
@@ -74,16 +68,14 @@ void ownerStock()
 		cout<<endl<<"Please enter todays stock:"<<endl<<endl;
 		
 		count=0;
-		for(count ; count<maxItem ; count++)  // owner input buns,chicken,beef and egg stock
+		for(count ; count<maxItem ; count++)
 		{
 			cout<<stockName[count];
 			cin>>stocks[count];
 		}
 		
 		cout<<endl;
-		
-		// checks if stock input is valid
-		
+
 		if(stocks[0] <0)
 			cout<<"INVALID Buns Stock!"<<endl;
 		
@@ -96,9 +88,9 @@ void ownerStock()
 		if(stocks[3] <0)
 			cout<<"INVALID Egg Stocks!"<<endl;
 		
-		if(stocks[0]>0 && (stocks[1]>0 || stocks[2]>0)) // checks if owner is eligible to make any progress
+		if(stocks[0]>0 && (stocks[1]>0 || stocks[2]>0))
 		{
-			cout<<endl<<"Want to re-enter stocks? (Y to proceed) : "; // prompt owner to re-enter stocks
+			cout<<endl<<"Want to re-enter stocks? (Y to proceed) : ";
 			cin>>stockInput;
 		}
 		
@@ -115,8 +107,7 @@ void menuNstock()
 {
 	cout<<endl<<"==================================================="<<endl;
 	cout<<"\t\t\tMENU"<<endl<<endl;
-	
-		
+
 	cout<<"Chicken Burger   (RM3.50)                Stocks:";
 	if(stocks[1]>0)
 		cout<<stocks[1]<<endl;
@@ -146,7 +137,7 @@ void menuNstock()
 void brgrOptn()
 {
 	price=0;
-	cout<<"Enter Burger Type (1/2) : "; // prompt customer enter burger type 
+	cout<<"Enter Burger Type (1/2) : ";
 	cin>>burgerType;
 	cout<<endl;
 	
@@ -171,7 +162,7 @@ void brgrOptn()
 
 void meatSelector()
 {
-	cout<<"Enter Burger Meat (C/B) : "; // prompt customer enter burger meat
+	cout<<"Enter Burger Meat (C/B) : ";
 	cin>>meatOptn;
 	
 	if(meatOptn=='C' || meatOptn=='c')
@@ -256,7 +247,7 @@ void grossNstock()
 	
 	cout<<"Stocks Left:"<<endl;
 	count=0;
-	for(count ; count<maxItem ; count++)  // displays stocks left
+	for(count ; count<maxItem ; count++)
 	{
 		cout<< stockName[count] << stocks[count] << endl;
 	}
